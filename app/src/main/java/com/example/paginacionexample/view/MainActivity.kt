@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity(), MainAdapter.OnClickListenerHelper {
 
         adapter = MainAdapter(lista, this,this)
         binding.recycler.adapter = adapter
+        //carga inicial de elementos
         model.getData(page, 12)
         observers()
 
