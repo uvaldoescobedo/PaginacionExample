@@ -11,11 +11,15 @@ class MainViewModel(repository: MainRepository) : ViewModel() {
     lateinit var response: MutableLiveData<ArrayList<MainData>>
 
     var mainDataSource: MainDataSource = repository.requestMainDataSource()
+    var page = 0
 
-    fun getData(page: Int, limit: Int) {
+    init {
         response = mainDataSource.respuesta
-        mainDataSource.requestGetImages(page, limit)
 
+    }
+
+    fun getData() {
+        mainDataSource.requestGetImages(page++, 12)
     }
 
 }
