@@ -14,7 +14,7 @@ import com.example.paginacionexample.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    lateinit var MainAdapter: MainAdapter
+    lateinit var adapter: MainAdapter
     lateinit var model: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun initElements() {
-        MainAdapter = MainAdapter(arrayListOf(), ::actionClickOnItem)
+        adapter = MainAdapter(arrayListOf(), ::actionClickOnItem)
         binding.apply {
-            recycler.adapter = this@MainActivity.MainAdapter
+            recycler.adapter = this@MainActivity.adapter
 
             nedScrool.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
                 if (v != null) {
@@ -47,13 +47,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun actionClickOnItem(mainData: MainData) {
-        Toast.makeText(baseContext, "diste click en ${mainData.author}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(baseContext, "${mainData.author}", Toast.LENGTH_SHORT).show()
     }
 
     private fun observers() {
         model.response.observe(this, Observer {
             if (it != null) {
-                MainAdapter.addElementToView(it)
+                adapter.addElementToView(it)
             }
         })
     }

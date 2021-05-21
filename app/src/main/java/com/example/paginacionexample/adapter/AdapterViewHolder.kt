@@ -13,10 +13,7 @@ class AdapterViewHolder(
     var item: MainData? = null
 
     init {
-        binding.contentItem.setOnClickListener {
-            item?.let { actionClick.invoke(it) }
-        }
-
+        binding.contentItem.setOnClickListener { item?.let { actionClick.invoke(it) } }
     }
 
     fun bind(item: MainData) {
